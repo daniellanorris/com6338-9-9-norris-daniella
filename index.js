@@ -39,27 +39,28 @@ function renderData({
         lat,
         lon
     },
-    weather: {
+    weather: [{
         icon,
         description
-    }
+    }]
 }) {
-    city = ""
-    this.weatherSearch.value = ''
-    div.innerHTML =
-        `<h2> ${name}, ${country} </h2>
-    <a href = "${locationMap}" target="${_BLANK}"> Click to View Map </a>
-    <img src= "https://openweathermap.org/img/wn/${icon}@2x.png" alt="${name}"> </img>
-    <p> ${setAttribute('style', 'text-transform: capitalize')}${description} </p>
-    <p> Current: ${temp} °F  </p>
-    <p> Feelslike: ${feels_like} °F </p>
-    <p> Last Updated:${timeString} </p>
-    `
-    const locationMap = `https://www.google.com/maps/search/?api=1&query= ${lat} , ${lon}`
+
+    const locationMap = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`
     const date = new Date((dt) * 1000)
     const timeString = date.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit'
     })
+
+    weatherSearch.value = ''
+    div.innerHTML =
+        `<h2> ${name}, ${country} </h2>
+    <a href = "${locationMap}" target="_BLANK">Click to View Map</a>
+    <img src= "https://openweathermap.org/img/wn/${icon}@2x.png" alt="${name}"> </img>
+    <p style="text-transform: capitalize">${description} </p>
+    <p> Current: ${temp} °F  </p>
+    <p> Feelslike: ${feels_like} °F </p>
+    <p> Last Updated:${timeString} </p>
+    `
 
 }
